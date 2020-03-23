@@ -7,22 +7,21 @@ print(events)
 
 def click_event(event,x,y,fkags,param):#how mouse event handler functions are defined
     if event==cv2.EVENT_LBUTTONDOWN:
-        print(str(x)+ ", "+str(y))
-        font=cv2.FONT_HERSHEY_SIMPLEX
-        cv2.putText(img,'Hello',(x,y),font,3,(255,0,0),3,cv2.LINE_AA)
-        cv2.imshow('image',img)
-    if event==cv2.EVENT_RBUTTONDOWN:
-        blue=img[y,x,0]
-        green=img[y,x,1]
-        red=img[y,x,2]
-        print(str(red)+ ", "+str(blue))
-        font=cv2.FONT_HERSHEY_SIMPLEX
-        cv2.putText(img,'Hello',(x,y),font,3,(255,255,0),3,cv2.LINE_AA)
-        cv2.imshow('image',img)
+      blue=[x,y,0]
+      green=[x,y,1]
+      red=[x,y,2]
+      cv2.circle(img,(x,y),3,(0,0,255),-1)
+      mycolor=np.zeros((512,512,3),np.uint8)
+      mycolor[:]=[blue,green,red]
+      cv2.imshow('color',mycolor)
+      
         
 
-img = cv2.imread('lena.png',1)
+#img = np.zeros((512,512,3),np.uint8)
+img = cv2.imread('lena.png')
+cv2.imread('lena.png')
 cv2.imshow('image',img)
+points=[]
 cv2.setMouseCallback('image',click_event)
 
 cv2.waitKey(0)
